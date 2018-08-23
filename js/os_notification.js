@@ -1,5 +1,5 @@
 (function( $ ) {
-var subscribeBtn = $('#cgi-notification-subscribe');
+var subscribeBtn = $('#os-notification-subscribe');
 var buttonText = subscribeBtn.find('input').val();
 var postId = subscribeBtn.find('input').data('postid');
 var oneSignalPostId = "post-" + postId;
@@ -16,7 +16,7 @@ var subscribed;
 
  function addNotificationToDB() {
     $.ajax({
-      url : CGI_Ajax.ajaxurl,
+      url : OS_Ajax.ajaxurl,
       type : 'post',
       data : {
         action : 'add_notification',
@@ -31,7 +31,7 @@ var subscribed;
 
  function removeNotificationFromDB() {
     $.ajax({
-      url : CGI_Ajax.ajaxurl,
+      url : OS_Ajax.ajaxurl,
       type : 'post',
       data : {
         action : 'remove_notification',

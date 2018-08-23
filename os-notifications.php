@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: CGI Customized Push Notifications 
+ * Plugin Name: One Signal Customized Push Notifications 
  * Description: This plugin customizes the behavior of One Signal push notifications.
  * Author: Eric Montzka
  * License: MIT
  * Version: 1.0
  */
 
-class Cgi_Notifications {
+class Os_Notifications {
 
   /**
    *
@@ -15,7 +15,7 @@ class Cgi_Notifications {
    *
    */
   public function __construct() {
-    add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_cgi_notification_script'), 1.0, true);
+    add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_os_notification_script'), 1.0, true);
     add_action( 'the_post', array( $this, 'is_user_subscribed_to_post' ));
     add_action( 'comment_post', array( $this, 'show_message_function'), 10, 2 );
     add_filter( 'the_content', array( $this, 'add_subscribe_button' ));
@@ -37,9 +37,9 @@ class Cgi_Notifications {
    * Enqueue Scripts
    *
    */
-  public function enqueue_cgi_notification_script() {
-    wp_enqueue_script( 'cgi-notification-script', plugin_dir_url( __FILE__ ) . 'js/cgi_notification.js',array('jquery'),1.2, true);
-    wp_localize_script( 'cgi-notification-script', 'CGI_Ajax', array('ajaxurl'   => admin_url( 'admin-ajax.php' ),) );
+  public function enqueue_os_notification_script() {
+    wp_enqueue_script( 'os-notification-script', plugin_dir_url( __FILE__ ) . 'js/os_notification.js',array('jquery'),1.2, true);
+    wp_localize_script( 'os-notification-script', 'OS_Ajax', array('ajaxurl'   => admin_url( 'admin-ajax.php' ),) );
     
   }
 
@@ -90,7 +90,7 @@ class Cgi_Notifications {
       $buttonText = 'Subscribe to this Post';
     }
    
-  $content .= "<form class=" . $status . " id='cgi-notification-subscribe'>";
+  $content .= "<form class=" . $status . " id='os-notification-subscribe'>";
   $content .= "<input type='submit' id='post-data' value='" . $buttonText . "'  data-postId='" . get_the_ID() . "' />";
   $content .= "<input type='hidden' value='" . wp_create_nonce() . "' />"; 
   $content .= "</form><div id='ajax-output'></div>" ;
@@ -231,5 +231,5 @@ class Cgi_Notifications {
   }
 }
 
-new Cgi_Notifications();
+new Os_Notifications();
 
