@@ -1,4 +1,4 @@
-# Project Title
+# One Signal Push Notification Wordpress Plugin
 
 This is a plugin that extends [One Signal's](https://onesignal.com) functionality to add a subscribe button to posts. When subscribed, user will recieve a push notification whenever the post is updated or recieves a comment. 
 
